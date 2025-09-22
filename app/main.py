@@ -30,4 +30,5 @@ class Carnivore(Animal):
         if not herbivore.hidden:
             herbivore.health -= 50
             if herbivore.health <= 0:
+                herbivore.health = 0
                 herbivore.die()
