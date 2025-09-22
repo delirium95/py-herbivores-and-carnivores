@@ -1,4 +1,3 @@
-# write your code here
 from __future__ import annotations
 
 
@@ -26,9 +25,10 @@ class Herbivore(Animal):
 
 
 class Carnivore(Animal):
-    def bite(self, herbivore: Herbivore) -> None:
-        if not herbivore.hidden:
-            herbivore.health -= 50
-            if herbivore.health <= 0:
-                herbivore.health = 0
-                herbivore.die()
+    def bite(self, other: Animal) -> None:
+        if isinstance(other, Herbivore):
+            if not other.hidden:
+                other.health -= 50
+                if other.health <= 0:
+                    other.health = 0
+                    other.die()
