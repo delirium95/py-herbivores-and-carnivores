@@ -29,7 +29,10 @@ class Animal:
 
     @health.setter
     def health(self, value: int) -> None:
-        self.health = max(0, value)
+        if value < 0:
+            self.health = 0
+        else:
+            self.health = value
         if self.health == 0:
             self.die()
 
