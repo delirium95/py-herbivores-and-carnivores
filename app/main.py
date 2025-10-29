@@ -31,10 +31,11 @@ class Animal:
     def health(self, value: int) -> None:
         if value < 0:
             self.health = 0
+            self.die()
+            return
         else:
             self.health = value
-        if self.health == 0:
-            self.die()
+            return
 
 
 class Herbivore(Animal):
