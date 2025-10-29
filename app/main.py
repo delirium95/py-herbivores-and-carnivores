@@ -33,6 +33,7 @@ class Animal:
         if self.health == 0:
             self.die()
 
+
 class Herbivore(Animal):
     def hide(self) -> None:
         self.hidden = not self.hidden
