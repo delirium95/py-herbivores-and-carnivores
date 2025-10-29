@@ -29,7 +29,7 @@ class Animal:
 
     @health.setter
     def health(self, value: int) -> None:
-        if value < 0:
+        if value <= 0:
             self._health = 0
             self.die()
         else:
