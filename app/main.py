@@ -9,7 +9,7 @@ class Animal:
                  health: int = 100,
                  hidden: bool = False
                  ) -> None:
-        self.health = health
+        self._health = health
         self.name = name
         self.hidden = hidden
         if self not in Animal.alive:
@@ -25,17 +25,15 @@ class Animal:
 
     @property
     def health(self) -> int:
-        return self.health
+        return self._health
 
     @health.setter
     def health(self, value: int) -> None:
         if value < 0:
-            self.health = 0
+            self._health = 0
             self.die()
-            return
         else:
-            self.health = value
-            return
+            self._health = value
 
 
 class Herbivore(Animal):
