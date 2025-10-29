@@ -2,14 +2,18 @@ from __future__ import annotations
 
 
 class Animal:
-    alive = []
+    alive: list[Animal] = []
 
-    def __init__(self, name: str,
-                 health: int = 100, hidden: bool = False) -> None:
+    def __init__(self,
+                 name: str,
+                 health: int = 100,
+                 hidden: bool = False
+                 ) -> None:
         self.health = health
         self.name = name
         self.hidden = hidden
-        Animal.alive.append(self)
+        if self not in Animal.alive:
+            Animal.alive.append(self)
 
     def __repr__(self) -> str:
         return (f"{{Name: {self.name}, "
@@ -19,6 +23,15 @@ class Animal:
         if self in Animal.alive:
             Animal.alive.remove(self)
 
+    @property
+    def health(self) -> int:
+        return self.health
+
+    @health.setter
+    def health(self, value: int) -> None:
+        self.health = max(0, value)
+        if self.health == 0:
+            self.die()
 
 class Herbivore(Animal):
     def hide(self) -> None:
@@ -32,4 +45,3 @@ class Carnivore(Animal):
                 other.health -= 50
                 if other.health <= 0:
                     other.health = 0
-                    other.die()
